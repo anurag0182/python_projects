@@ -1,7 +1,9 @@
-master_pwd = input("Enter a MASTER PASSWORD! \n")
+#passowrd manager!
+master_pwd = input("Enter a MASTER PASSWORD! \n")# user input
 
 def view():
-    pass
+    with open ('password.txt','r') as f:
+        f.read('password.txt')
 
 def add():
     name = input("Account Name: ")
@@ -21,4 +23,5 @@ while True:
     elif mode == "add":
         add()
     else:
+
         print("invalid mode.")
