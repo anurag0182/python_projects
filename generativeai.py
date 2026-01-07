@@ -1,25 +1,26 @@
-import google.generativeai as genai
-genai.configure(api_key= "AIzaSyBe-V036YcjgiBEwzr1HiKvgqEy4aVRGrs")
-model = genai.GenerativeModel("models/gemini-1.5-flash")
+from google import genai
 
-chat = model.start_chat()
+client = genai.Client(
+    api_key="AIzaSyBKbSgWGiYHbjFC7DFc-KMZvTZ7gH6BB7g"
+)
 
-print("Gemini AI chatbot is ready (type'Bye' to exit):\n")
+chat = client.chats.create(
+    model="gemini-3-flash-preview"
+)
+
+print("Gemini AI chatbot is ready (type 'bye' to exit):\n")
 
 while True:
-    user_input = input("Ashish: ")
+    user_input = input("Ashish: ").strip()
 
-    if user_input.lower() == 'bye':
+    if user_input.lower() == "bye":
         print("Anurag: Goodbye!")
         break
-    elif user_input.lower() == 'who created you':
-        print("Anurag: Anurag Master!")
-    else:
-        print("Anurag: I don't understand that.")
 
-    
     try:
         response = chat.send_message(user_input)
-        print("Anurag:", response.text.strip())
+        print("Anurag:", response.text)
+
     except Exception as err:
-        print("Anurag: Error 2201",err)
+        print("Anurag: Error occurred →", err)
+
